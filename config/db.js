@@ -5,7 +5,7 @@ console.log(config_db);
 const dev_db_url = `mongodb://${config_db.host}:${config_db.port}/${config_db.name}`;//mongodb://localhost:27017/user-registration
 
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, {useNewUrlParser: true});
 
 const db = mongoose.connection;
 
