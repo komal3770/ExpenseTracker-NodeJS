@@ -3,12 +3,12 @@ const config = {
         port : 8080
     },
     db : {
-        host : 'localhost',
-        port : 27017,
-        name : 'expense_tracker'
-        //user : 'root',
-        //pass : 'root',
-        //authSource : 'admin'
+        host : 'cluster0-shard-00-00-vjsth.mongodb.net:27017,cluster0-shard-00-01-vjsth.mongodb.net:27017,cluster0-shard-00-02-vjsth.mongodb.net:27017',
+        //port : 27017,
+        name : 'expense_tracker_db',
+        user : 'komalp',
+        pass : 'komalp',
+        authSource : 'admin'
     }
 }
 

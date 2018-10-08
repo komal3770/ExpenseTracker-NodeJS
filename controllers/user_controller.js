@@ -8,10 +8,10 @@ exports.saveUser = function (req, res) {
         email:req.body.email,
         password:req.body.password
     });
-
+    
     userData.save(function(err){
         if(err)
-            res.send('User Failed');
+            res.send('User Failed '+err);
         else
             res.send('User Created successfully');
     });
