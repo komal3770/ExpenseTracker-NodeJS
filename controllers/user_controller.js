@@ -1,5 +1,7 @@
 const user = require('../models/user');
-var query = require('url')
+const bcrypt = require('bcryptjs');
+const SALT_KEY = 10;
+var query = require('url');
 
 //Register New User
 exports.saveUser = function (req, res) {
@@ -8,12 +10,20 @@ exports.saveUser = function (req, res) {
         email:req.body.email,
         password:req.body.password
     });
-    
-    userData.save(function(err){
+    //Encrypt password
+    bcrypt.hash(userData.password, SALT_KEY, function(err,hash){
         if(err)
-            res.send('User Failed '+err);
-        else
-            res.send('User Created successfully');
+            res.send("Failed to save user");
+        else{
+            userData.password = hash;
+            userData.save(function(err){
+                if(err)
+                    res.send('User Failed '+err);
+                else
+                    res.send('User Created successfully');
+            });
+        }
+        
     });
 };
 
